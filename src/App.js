@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import { Switch, Route } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 
-function App() {
+import Navbar from "./components/Navbar";
+import HomePage from "./components/HomePage";
+import UsersPage from "./components/UsersPage";
+import UserPage from "./components/UserPage";
+import LibrarianPage from "./components/LibrarianPage";
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container-fluid p-0">
+      <Navbar />
+      <main className="container-fluid p-0">
+        <Switch>
+          <Route exact path="/">
+            <HomePage />
+          </Route>
+          <Route exact path="/users">
+            <UsersPage />
+          </Route>
+          <Route exact path="/users/:userid">
+            <UserPage />
+          </Route>
+          <Route exact path="/librarian">
+            <LibrarianPage />
+          </Route>
+        </Switch>
+      </main>
     </div>
   );
-}
+};
 
 export default App;
