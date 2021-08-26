@@ -1,15 +1,15 @@
 import React from "react";
-import Book from "./Book";
+import CheckedOutBook from "./CheckedOutBook";
 
-const BooksAll = (props) => {
+const CheckedOutBooksAll = (props) => {
 
     const displayBooks = () => {
-        if (props.books.data === undefined) {
+        if (props.books === undefined) {
             return (<div>Loading</div>)
         } else {
-            const bookList = props.books.data.map((book) => {
+            const bookList = props.books.map((book) => {
                 return (
-                    <Book book={book} setSelectedBook={(book) => props.setSelectedBookCallback(book)}/>
+                    <CheckedOutBook book={book} />
                 )
             })
             return bookList;
@@ -20,11 +20,11 @@ const BooksAll = (props) => {
     return (
         <section className="row p-2 m-2 justify-content-center">
             <div className="col-10">
-            <header className="h2 text-center">Books</header>
+            <header className="h2 text-center">Checked Out Books</header>
             {displayBooks()}
             </div>
         </section>
     )
 }
 
-export default BooksAll
+export default CheckedOutBooksAll

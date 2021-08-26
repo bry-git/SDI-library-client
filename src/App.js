@@ -13,13 +13,19 @@ import LibrarianPage from "./components/LibrarianPage";
 const App = () => {
 
   const [checkouts, setCheckouts] = useState([]);
+  const [books, setBooks] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [didUpdate, setDidUpdate] = useState(true);
 
   useEffect(() => {
     setIsLoading(true);
     const dataHandler = new DataHandler();
-    dataHandler.getCheckouts().then((data) => setCheckouts(data)).then(() => setIsLoading(false));
-  }, [])
+    dataHandler.getCheckouts()
+    .then((data) => setCheckouts(data))
+    .then(() => dataHandler.getBooks())
+    .then((data) => setBooks(data))
+    .then(() => setIsLoading(false));
+  }, [didUpdate])
 
   return (
     <div className="container-fluid p-0">
@@ -27,16 +33,16 @@ const App = () => {
       <main className="container-fluid p-0">
         <Switch>
           <Route exact path="/">
-            <HomePage />
+            <HomePage books={books} />
           </Route>
           <Route exact path="/users">
             <UsersPage />
           </Route>
           <Route exact path="/users/:userid">
-            <UserPage />
+            <UserPage books={books} checkouts={checkouts} isLoading={isLoading}/>
           </Route>
           <Route exact path="/librarian">
-            <LibrarianPage />
+            <LibrarianPage books={books} checkouts={checkouts} />
           </Route>
         </Switch>
       </main>

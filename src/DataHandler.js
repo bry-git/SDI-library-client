@@ -29,6 +29,36 @@ class DataHandler {
     }
   }
 
+  async getCheckoutByBook(id) {
+    if (this.use_mock_data) {
+      return 'mock data'
+    } else {
+      try {
+        const response = await fetch(`${this.apiBase}/checkout?checkout.book_id=${id}`);
+        return await response.json();
+      } catch (error) {
+        console.log("Request failed", error);
+      }
+    }
+  }
+
+
+
+
+  async getBooks() {
+    // returns a an array of objects containing book type data
+    if (this.use_mock_data) {
+      return 'mock data'
+    } else {
+      try {
+        const response = await fetch(`${this.apiBase}/book`);
+        return await response.json();
+      } catch (error) {
+        console.log("Request failed", error);
+      }
+    }
+  }
+
   async getCheckouts() {
     // returns a an array of objects containing book type data
     if (this.use_mock_data) {
