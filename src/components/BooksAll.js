@@ -9,7 +9,7 @@ const BooksAll = (props) => {
         } else {
             const bookList = props.books.data.map((book) => {
                 return (
-                    <Book book={book} setSelectedBook={(book) => props.setSelectedBookCallback(book)}/>
+                    <Book book={book} setSelectedBookCallback={(book) => props.setSelectedBookCallback(book)}/>
                 )
             })
             return bookList;

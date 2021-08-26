@@ -13,7 +13,6 @@ const UserPage = (props) => {
 
     useEffect(() => {
         setUserID(props.match.params.userid);
-        console.log(typeof props.match.params.userid)
     }, [props.match.params.userid])
 
 
@@ -39,7 +38,7 @@ const UserPage = (props) => {
             {isLoading ? (
                 <div>loading...</div>
             ) : (
-                <CheckOutBook selectedBook={book => setSelectedBook(book)}/>
+                <CheckOutBook selectedBook={selectedBook}/>
             )}
             </article>
             <article className="col-lg-4 col-md-12">
