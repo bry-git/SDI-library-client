@@ -1,21 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import BooksAll from "./BooksAll";
-import DataHandler from '../DataHandler';
 
-const HomePage = () => {
-  const [books, setBooks] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    setIsLoading(true);
-    const dataHandler = new DataHandler();
-    dataHandler.getBooks().then((data) => setBooks(data)).then(() => setIsLoading(false));
-  }, [])
+const HomePage = (props) => {
 
   return(
-      <>
-      <BooksAll />
-      </>
+      <section className="justify contents center">
+        <h1>Welcome to the SDI Library</h1>
+        <BooksAll />
+      </section>
   )
 }
 

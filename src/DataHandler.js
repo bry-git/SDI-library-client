@@ -15,13 +15,27 @@ class DataHandler {
     });
   }
 
-  async getBooks() {
-    // returns a an array of objects containing aircraft type data
+  async getUsers() {
+  if (this.use_mock_data) {
+    return 'mock data'
+  } else {
+    try {
+      const response= await fetch(`${this.apiBase}/user`)
+      return await response.json();
+    }
+    catch(error) {
+      console.log("Request failed", error)
+      }
+    }
+  }
+
+  async getCheckouts() {
+    // returns a an array of objects containing book type data
     if (this.use_mock_data) {
       return 'mock data'
     } else {
       try {
-        const response = await fetch(`${this.apiBase}/books`);
+        const response = await fetch(`${this.apiBase}/checkout`);
         return await response.json();
       } catch (error) {
         console.log("Request failed", error);
